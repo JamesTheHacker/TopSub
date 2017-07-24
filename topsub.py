@@ -5,7 +5,7 @@ import ConfigParser
 import logging
 import praw
 
-# Fetch a top submission from a subreddit
+# Fetch top submissions from a subreddit
 def topSubmissions(reddit, sub, top_filter):
     submissions = reddit.subreddit(sub).top(top_filter)
     return [submission for submission in submissions if not submission.stickied]
