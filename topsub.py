@@ -4,7 +4,6 @@ import argparse
 import ConfigParser
 import logging
 import praw
-import os
 
 # Fetch a top submission from a subreddit
 def topSubmissions(reddit, sub, top_filter):
