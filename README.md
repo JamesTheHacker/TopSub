@@ -26,6 +26,7 @@ Modify `praw.conf` with your Reddit credentials and app credentials:
 * `--subreddit` is the subreddit you want to take top posts from.
 * `--postsub` is the subreddit you want to repost to
 * `--config` should contain the path to your config file
+* `--filter` top filter: `all`, `day`, `hour`, `month`, `week`, `year`
 
 run `./topsub.py -h` for help.
 
