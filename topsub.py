@@ -7,8 +7,8 @@ import praw
 import os
 
 # Fetch a top submission from a subreddit
-def topSubmissions(reddit, sub, limit=15):
-    submissions = reddit.subreddit(sub).top(limit)
+def topSubmissions(reddit, sub, top_filter='day'):
+    submissions = reddit.subreddit(sub).top(top_filter)
     return [submission for submission in submissions if not submission.stickied]
 
 # Post a URL on the specified sub
