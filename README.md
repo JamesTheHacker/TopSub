@@ -1,16 +1,16 @@
-#TopSub
+# TopSub
 
 TopSub is a Reddit script that allows you to repost/cross post content on your own sub. This is useful for create subs that archive "top" content. Here's an example of a subreddit ran by the author [/r/topjokes](https://www.reddit.com/r/topjokes/).
 
-##Installing
+## Installing
 
     git clone http://github.com/JamesTheHacker/TopSub
     cd TopSub
     pip install -r requirements.txt
 
-##Configuration
+## Configuration
 
-Modify `praw.conf`:
+Modify `praw.conf` with your Reddit credentials and app credentials:
 
     [praw]
     client_id=
@@ -19,7 +19,7 @@ Modify `praw.conf`:
     user_agent=
     username=
 
-##Running
+## Running
 
     ./topsub.py --subreddit jokes --postsub topjokes --config praw.conf
 
@@ -27,6 +27,8 @@ Modify `praw.conf`:
 * `--postsub` is the subreddit you want to repost to
 * `--config` should contain the path to your config file
 
-##Recommendations
+run `./topsub.py -h` for help.
+
+## Recommendations
 
 I run this script on a cronjob. I run multiple subs using different accounts so I like to pass in different config files for different accounts.
