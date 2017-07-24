@@ -6,14 +6,10 @@ import logging
 import praw
 import os
 
-
 # Fetch a top submission from a subreddit
-def topSubmission(reddit, sub):
-    # Return 5 results to ensure we get a top submission that is not a sticky
-    for submission in reddit.subreddit(sub).hot(limit=5):
-        # If submission is not a sticky post return
-        if not submission.stickied:
-            return submission
+def topSubmissions(reddit, sub, limit=5):
+    submissions = reddit.subreddit(sub).hot(limit=5)
+    return [submission for submission in submissions if not submission.stickied]
 
 # Post a URL on the specified sub
 def repostURL(reddit, sub, title, url):
@@ -35,18 +31,23 @@ def main(args, logger, config):
         username=config.get('praw', 'username')
     )
 
-    # Scrape top posts from subreddit and repost
-    try:
-        submission = topSubmission(reddit, args.subreddit)
-        repostURL(reddit, args.postsub, submission.title, submission.url)
-    except praw.exceptions.APIException, e:
-        logger.info(e)
-    except Exception, e:
-        logger.warning(e)
-
+    # Get top submissions from sub
+    submissions = topSubmissions(reddit, args.subreddit)
+    
+    # Loop through submissions. If submission has already been submitted try another
+    for submission in submissions:
+        try:
+            repostURL(reddit, args.postsub, submission.title, submission.url)
+            break
+        except praw.exceptions.APIException, e:
+            logger.info(e)
+            continue
+        except Exception, e:
+            logger.warning(e)
+            
 
 if __name__ == "__main__":
-
+    
     # Argparser for command line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--subreddit', required=True, help='Subreddit to scrape')

@@ -16,7 +16,7 @@ Modify `praw.conf` with your Reddit credentials and app credentials:
     client_id=
     client_secret=
     password=
-    user_agent=
+    user_agent='TopSub by /u/JamesTheHaxor'
     username=
 
 ## Running
