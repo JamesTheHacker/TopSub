@@ -41,7 +41,6 @@ def main(args, logger, config):
             break
         except praw.exceptions.APIException, e:
             logger.info(e)
-            continue
         except Exception, e:
             logger.warning(e)
             
