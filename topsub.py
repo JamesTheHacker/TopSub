@@ -7,7 +7,7 @@ import praw
 import os
 
 # Fetch a top submission from a subreddit
-def topSubmissions(reddit, sub, top_filter='week'):
+def topSubmissions(reddit, sub, top_filter):
     submissions = reddit.subreddit(sub).top(top_filter)
     return [submission for submission in submissions if not submission.stickied]
 
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     parser.add_argument('-s', '--subreddit', required=True, help='Subreddit to scrape')
     parser.add_argument('-p', '--postsub', required=True, help='Subreddit to post to')
     parser.add_argument('-c', '--config', required=True, help='Path to config file')
-    parser.add_argument('-f', '--filter', required=False, help='Top filter: all, day, hour, month, week, year')
+    parser.add_argument('-f', '--filter', required=False, default='week' help='Top filter: all, day, hour, month, week, year')
     args = parser.parse_args()
 
     # Setup logging
